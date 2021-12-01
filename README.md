@@ -1,11 +1,5 @@
-## Build
-
-```
-bash build.sh
-```
-
 ## Run
 
 ```
-./adventofcode2021
+lein run day01 part2
 ```

@@ -12,7 +12,7 @@
   (->> (partition 3 1 nums)
        (map (partial apply +))
        (partition 2 1)
-       (filter (fn [[a b]] (> b a)))
+       (filter (partial apply <))
        (count)))
 
 (def solution

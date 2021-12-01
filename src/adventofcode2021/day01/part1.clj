@@ -10,7 +10,7 @@
 (defn solve
   [nums]
   (->> (partition 2 1 nums)
-       (filter (fn [[a b]] (> b a)))
+       (filter (partial apply <))
        (count)))
 
 (def solution
