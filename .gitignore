@@ -1,2 +1,6 @@
 target
 .nrepl-port
+.calva
+.lsp
+.lein-failures
+.clj-kondo
