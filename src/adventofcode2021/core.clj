@@ -1,6 +1,8 @@
 (ns adventofcode2021.core
   (:require [adventofcode2021.day01.part1]
-            [adventofcode2021.day01.part2])
+            [adventofcode2021.day01.part2]
+            [adventofcode2021.day02.part1]
+            [adventofcode2021.day02.part2])
   (:gen-class))
 
 (defn parse-args [args]
@@ -17,7 +19,10 @@
 (def solutions
   {"day01"
    {"part1" adventofcode2021.day01.part1/solution
-    "part2" adventofcode2021.day01.part2/solution}})
+    "part2" adventofcode2021.day01.part2/solution}
+   "day02"
+   {"part1" adventofcode2021.day02.part1/solution
+    "part2" adventofcode2021.day02.part2/solution}})
 
 (defn run-subdir
   [[day part]]
