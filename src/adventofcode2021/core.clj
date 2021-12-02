@@ -19,9 +19,9 @@
     "part2" adventofcode2021.day03.part2/solution}})
 
 (defn run-subdir
-  [[day part]]
+  [[day part input-file]]
   (let [{:keys [parse solve]} (get-in solutions [day part])]
-    (println (solve (parse (slurp (str "src/adventofcode2021/" day "/input.txt")))))))
+    (println (solve (parse (slurp (str "src/adventofcode2021/" day "/" (or input-file "input.txt"))))))))
 
 (defn -main [& args]
   ()
