@@ -7,17 +7,6 @@
             [adventofcode2021.day03.part2])
   (:gen-class))
 
-(defn parse-args [args]
-  (println "Arguments are ignored: " args))
-
-(defn parse-line [line]
-  (str " :: " line))
-
-(defn print-line [line]
-  (->> line
-       parse-line
-       println))
-
 (def solutions
   {"day01"
    {"part1" adventofcode2021.day01.part1/solution
