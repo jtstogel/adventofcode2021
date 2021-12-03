@@ -22,14 +22,16 @@
   (* (binary-seq-to-int gamma-rate)
      (binary-seq-to-int epsilon-rate)))
 
+(defn get-or-default [not-found m k] (get m k not-found))
+
 (defn compute-gamma-epislon-rates
   [binary-nums]
   (->> binary-nums
        (transpose)
        (map frequencies)
        ((fn [freqs]
-          {:gamma-rate (map #(max-key % 0 1) freqs)
-           :epsilon-rate (map #(min-key % 0 1) freqs)}))))
+          {:gamma-rate (map #(max-key (partial get-or-default 0 %) 0 1) freqs)
+           :epsilon-rate (map #(min-key (partial get-or-default 0 %) 1 0) freqs)}))))
 
 (defn solve
   [binary-nums]
