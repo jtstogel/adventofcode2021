@@ -4,7 +4,9 @@
             [adventofcode2021.day02.part1]
             [adventofcode2021.day02.part2]
             [adventofcode2021.day03.part1]
-            [adventofcode2021.day03.part2])
+            [adventofcode2021.day03.part2]
+            [adventofcode2021.day04.part1]
+            [adventofcode2021.day04.part2])
   (:gen-class))
 
 (def solutions
@@ -16,7 +18,10 @@
     "part2" adventofcode2021.day02.part2/solution}
    "day03"
    {"part1" adventofcode2021.day03.part1/solution
-    "part2" adventofcode2021.day03.part2/solution}})
+    "part2" adventofcode2021.day03.part2/solution}
+   "day04"
+   {"part1" adventofcode2021.day04.part1/solution
+    "part2" adventofcode2021.day04.part2/solution}})
 
 (defn run-subdir
   [[day part input-file]]
