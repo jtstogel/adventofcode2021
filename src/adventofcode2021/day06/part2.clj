@@ -4,8 +4,8 @@
             [adventofcode2021.day06.part1 :as part1]))
 
 (defn solve
-  [value]
-  value)
+  [timer-populations]
+  (part1/lanternfish-population-after-days 256 timer-populations))
 
 (def solution
   {:parse part1/parse
