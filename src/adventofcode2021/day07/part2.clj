@@ -15,7 +15,7 @@
 (defn fuel-cost
   [horizontal-positions unified-position]
   (->> horizontal-positions
-       (map (comp (partial distance unified-position)))
+       (map (partial distance unified-position))
        (apply +)))
 
 (defn solve
