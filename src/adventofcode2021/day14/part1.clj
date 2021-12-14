@@ -5,7 +5,7 @@
 (defn parse-rule
   [text]
   (let [[pair insert] (clojure.string/split text #" -> ")]
-    {(vec (map str (seq pair))) insert}))
+    {(vec (map str pair)) insert}))
 
 (defn parse-rules
   [text]
@@ -14,7 +14,7 @@
 (defn parse
   [text]
   (let [[template rules-text] (clojure.string/split text #"\n\n")]
-    {:template (vec (map str (seq template)))
+    {:template (vec (map str template))
      :rules (parse-rules rules-text)}))
 
 (defn pairs [coll]
