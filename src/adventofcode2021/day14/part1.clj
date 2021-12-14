@@ -43,11 +43,9 @@
   (->> pair-counts
        ; To avoid double counting, we'll only count the first of each pair.
        (map (fn [[[a _] count]] {a count}))
-       ; However, this will leave the endpoint element deficient.
+       ; ...however, this will leave the endpoint element deficient.
        ; Even after many insertions, the first last element won't change,
-       ; so we just add that one here
-       ; Below we'll double count every element (since we're summing all the pairs),
-       ; so to account for the endpoints, we add +1 for each endpoint element.
+       ; so we just correct that here:
        (apply merge-with + {(last template) 1})))
 
 (defn solve-n
