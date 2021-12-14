@@ -20,6 +20,10 @@
 (defn pairs [coll]
   (partition 2 1 coll))
 
+(defn apply-n-times
+  [n f v]
+  (nth (iterate f v) n))
+
 (defn new-pairs
   [rules [[a b :as pair] count]]
   (if-let [insertion (rules pair)]
@@ -29,31 +33,30 @@
 
 (defn apply-insertion-rules
   [rules pair-counts]
-  (apply merge-with + (flatten (keep (partial new-pairs rules) pair-counts))))
-
-(defn apply-insertion-rules-repeatedly
-  [n rules pair-counts]
-  (nth (iterate (partial apply-insertion-rules rules) pair-counts) n))
+  (->> pair-counts
+       (keep (partial new-pairs rules))
+       (flatten)
+       (apply merge-with +)))
 
 (defn element-counts
-  [first-el last-el pair-counts]
+  [template pair-counts]
   (->> pair-counts
-       (mapcat (fn [[[a b] count]] [{a count} {b count}]))
-       ; Even after many insertions, the first element and last element won't change.
+       ; To avoid double counting, we'll only count the first of each pair.
+       (map (fn [[[a _] count]] {a count}))
+       ; However, this will leave the endpoint element deficient.
+       ; Even after many insertions, the first last element won't change,
+       ; so we just add that one here
        ; Below we'll double count every element (since we're summing all the pairs),
        ; so to account for the endpoints, we add +1 for each endpoint element.
-       (apply merge-with + {first-el 1} {last-el 1})
-       (mapcat (fn [[c doubled-count]] [c (quot doubled-count 2)]))
-       (apply hash-map)))
+       (apply merge-with + {(last template) 1})))
 
 (defn solve-n
-  [apply-times template rules]
+  [times template rules]
   (let [template-pair-counts (frequencies (map vec (pairs template)))
-        pair-counts (apply-insertion-rules-repeatedly apply-times rules template-pair-counts)
-        element-counts (element-counts (first template) (last template) pair-counts)
-        counts (map second element-counts)]
-    (- (apply max counts)
-       (apply min counts))))
+        pair-counts (apply-n-times times (partial apply-insertion-rules rules) template-pair-counts)
+        element-counts (element-counts template pair-counts)]
+    (- (apply max (vals element-counts))
+       (apply min (vals element-counts)))))
 
 (defn solve
   [{:keys [template rules]}]
