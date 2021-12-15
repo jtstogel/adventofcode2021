@@ -57,7 +57,7 @@
   [mat]
   (->> mat
        ; increment all energies by 1
-       (map-mat #(inc %))
+       (map-mat (fn [e _] (inc e)))
        ; repeatedly flash until everything's settled
        (fixed-point flash)))
 

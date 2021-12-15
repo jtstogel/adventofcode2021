@@ -60,7 +60,8 @@
 (defn solve
   [[calls boards]]
   (->> (partials calls)
-       (map #(winning-bingo-score % boards))))
+       (keep #(winning-bingo-score % boards))
+       (first)))
 
 (def solution
   {:parse parse
