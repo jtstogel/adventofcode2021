@@ -7,8 +7,8 @@
   (mapv #(inc (mod % 9)) coll))
 
 (defn expand
-  [times f v]
-  (->> (iterate f v)
+  [times f coll]
+  (->> (iterate f coll)
        (take times)
        (apply concat)
        (vec)))
