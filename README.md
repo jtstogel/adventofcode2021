@@ -1,17 +1,14 @@
-## Run
+## Advent of code 2021 -- clojure
 
 ```
-lein run day01 part2
-```
+# Run specific day and part:
+lein run day13 part2
 
-Or to run with alternate input file:
+# Or optionally specify an input filename:
+lein run day08 part1 sample.txt
 
-```
-lein run dayNN partN sample.txt
-```
-
-Or to run everything on the full inputs, with timing info:
-
-```
+# Or run everything:
 lein run all
 ```
+
+I'm new to clojure, so these are probably not idiomatic.
