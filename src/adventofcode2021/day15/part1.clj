@@ -44,8 +44,9 @@
 
 (defn path-total-risk
   [mat path]
-  (let [risk #(get-in mat %)]
-    (apply + (map risk path))))
+  (->> path
+       (map (partial get-in mat))
+       (apply +)))
 
 (defn solve
   [mat]

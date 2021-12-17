@@ -2,13 +2,17 @@
   (:require [adventofcode2021.solutions :as solutions])
   (:gen-class))
 
-; https://stackoverflow.com/questions/62724497/how-can-i-record-time-for-function-call-in-clojure
-(defmacro time-execution
-  [& body]
-  `(let [s# (new java.io.StringWriter)]
-     (binding [*out* s#]
-       (hash-map :return (time ~@body)
-                 :time-ms   (Float/parseFloat (.replaceAll (str s#) "[^0-9\\.]" ""))))))
+; Modified from:
+; https://medium.com/@adamneilson/timing-clojure-functions-acce94c24c78
+(defmacro time-execution [expr]
+  (let [sym (= (type expr) clojure.lang.Symbol)]
+    `(let [start# (. System (nanoTime))
+           return# ~expr
+           res# (if ~sym
+                  (resolve '~expr)
+                  (resolve (first '~expr)))]
+       {:return return#
+        :time-ms (/ (double (- (. System (nanoTime)) start#)) 1000000.0)})))
 
 (defn solve-part
   [day part input-file]
@@ -37,7 +41,7 @@
 
 (defn run-subdir
   [[day part input-file]]
-  (println (:solution (solve-part day part input-file))))
+  (println (format-solution (solve-part day part input-file))))
 
 (defn -main [& args]
   ()
