@@ -13,7 +13,7 @@
 
 (defn parse
   [text]
-  (let [[template rules-text] (clojure.string/split text #"\n\n")]
+  (let [[template rules-text] (clojure.string/split text #"\r?\n\r?\n")]
     {:template (vec (map str template))
      :rules (parse-rules rules-text)}))
 

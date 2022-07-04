@@ -15,7 +15,7 @@
 
 (defn parse
   [text]
-  (let [[coords-text instructions] (clojure.string/split text #"\n\n")]
+  (let [[coords-text instructions] (clojure.string/split text #"\r?\n\r?\n")]
     {:coordinates (set (map parse-coord (clojure.string/split-lines coords-text)))
      :instructions (vec (map parse-instruction (clojure.string/split-lines instructions)))}))
 

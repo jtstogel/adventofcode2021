@@ -11,7 +11,7 @@
 
 (defn parse
   [text]
-  (let [[calls-text & board-texts] (clojure.string/split text #"\n\n")
+  (let [[calls-text & board-texts] (clojure.string/split text #"\r?\n\r?\n")
         calls (parse-calls calls-text)
         boards (map parse-board board-texts)]
     [calls boards]))
