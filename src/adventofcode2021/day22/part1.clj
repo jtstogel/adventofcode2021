@@ -94,7 +94,6 @@
 
 (defn toggle
   [on-cuboids power cuboid]
-  (println power (count on-cuboids))
   (if (= power :on)
     (toggle-on  on-cuboids cuboid)
     (toggle-off on-cuboids cuboid)))
